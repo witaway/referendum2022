@@ -1,0 +1,46 @@
+BODY {
+  background-color: #FFFFFF;
+}
+
+#header, #footer, .noprint {
+    display: none;
+}
+
+DIV.page {
+  margin-top: 0;
+  margin-bottom: 0;
+  border: 0 none;
+}
+
+INPUT.okColor {
+  background-color: #FFFFFF;
+}
+
+TABLE,TD,TH,TD.itogo {
+    background-color: white;
+}
+
+TD, TH {
+    border-color: black;
+}
+
+TABLE.okrug, TABLE.okrug TD, TABLE.okrug TH, TABLE.okrug TH.itogo {
+    background-color: white;
+    border: 1pt solid black;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 8pt;
+}
+
+H2 {
+    color: black;
+    font-size: 12pt;
+}
+
+A.details {
+    display: inline;
+    border: 0 none;
+}
+
+A.img_detail {
+    background-image: none;
+}

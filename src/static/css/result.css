@@ -1,0 +1,89 @@
+DIV.center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+H1 {
+  font-size: 18pt;
+  text-align: center;
+  color: black;
+  margin-bottom: 20px;
+}
+
+H2 {
+  font-weight: bold;
+  font-size: 13pt;
+  color: #5174FF;
+  text-align: left;
+}
+
+A.button {
+  background-color: #BFDFAE;
+  border: 1px solid #008000;
+}
+
+A.details {
+  margin: 10px 0 5px 0;
+  padding-top: 3px;
+/*  border-top: 1px dashed black; */
+  display: block;
+  /*height: 48px;*/
+  text-decoration: none;
+  color: black;
+}
+
+A.details:hover {
+  background-color: yellow;
+}
+
+/* Таблица с результатами по округу */
+TABLE.okrug {
+  border: 2px solid #FFFFFF;
+  background-color: #C4FFC5;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+TABLE.okrug TD,TABLE.okrug TH {
+  border: 1pt solid #FFFFFF;
+  text-align: center;
+  vertical-align: middle;
+  padding: 2px 5px;
+}
+
+TABLE.okrug TH {
+  font-weight: bold;
+  font-size: 12pt;
+  background-color: #00FF7F;
+}
+
+TABLE.okrug TH.itogo {
+  background-color: #FFA500;
+}
+
+
+/* Выпадающий список: список округов */
+#chooser {
+    font-size: 12pt;
+    font-family: Verdana,sans-serif;
+    border: 1px solid green;
+    width: 300px;
+}
+
+#chooser OPTGROUP {
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-style: normal;
+    color: blue;
+}
+
+#chooser OPTION {
+    padding: 0 5px;
+    text-align: left;
+    font-weight: normal;
+    color: black;
+    background-color: #C0FFFF;
+}

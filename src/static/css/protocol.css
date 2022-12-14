@@ -1,0 +1,318 @@
+/* ---------------- Одна страница ----------------- */
+DIV.page {
+  background-color: #FFFFFF;
+  padding-top:   15mm;
+  padding-left:  12.5mm;
+  padding-right: 12.5mm;
+  width: 185mm;
+  height: 270mm;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 5mm;
+
+  margin-top: 5mm;
+  margin-bottom: 10mm;
+  border: 1px solid black;
+}
+
+DIV.page TABLE {
+  border: none;
+  width: 185mm;
+  border-collapse: collapse;
+}
+
+DIV.page INPUT {
+  width: 25mm;
+  height: 5mm;
+  border: none;
+  border-bottom: 1pt solid #000000;
+  font-family: "Times New Roman", serif;
+  font-size: 14pt;
+  text-align: center;
+}
+
+INPUT.emptyColor{
+  background-color: yellow;
+}
+
+INPUT.fillColor{
+  background-color: #FFFFC0;
+}
+
+INPUT.okColor{
+  background-color: #EEEEEE;
+}
+
+INPUT.errorColor{
+  background-color: red;
+}
+
+/* --------- Заголовок документа --------------- */
+
+#headTable TD.cell1 {
+  width: 139mm;
+  vertical-align: top;
+  text-align: center;
+  font-size: 12pt;
+}
+
+#headTable TD.cell1 SUP {
+  font-size: 9pt;
+}
+
+#headTable TD.cell2 {
+  width: 46mm;
+  font-size: 9pt;
+  vertical-align: top;
+  
+}
+
+/* ------------Протокол-------------------*/
+
+H1 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 12pt;
+  margin-top: 15mm;
+  margin-bottom: 3mm;
+}
+
+H1 BIG {
+  font-size: 12pt;  
+  letter-spacing: 1mm; 
+}
+
+TABLE#baseTable TD.bigline {
+  border-bottom: 1pt solid #000000;
+  text-align: center;
+  height: 5mm;
+}
+
+TD.metka {
+  text-align: center;
+  font-size: 8pt;
+  vertical-align: top;
+}
+TD.m2 {
+  padding-left: 5mm;
+}
+TD.m3 {
+  padding-left: 5mm;
+}
+
+
+SPAN.u {
+  display: inline-block;
+  border-bottom: 1pt solid #000000;
+  text-align: center;
+}
+
+.w5mm {
+  width: 5mm;
+}
+
+.w3mm {
+  width: 3mm;
+}
+
+.w12mm {
+  width: 12mm;
+}
+
+.w14mm {
+  width: 14mm;
+}
+
+.w27mm {
+  width: 27.5mm;
+}
+
+.w30mm {
+  width: 30mm;
+}
+
+.w60mm {
+  width: 60mm;
+}
+
+.w180mm {
+  width: 180mm;
+}
+
+.w185mm {
+  width: 185mm;
+}
+
+SPAN.s1 {
+  width: 5mm;
+  display: inline-block;
+  text-align: left;
+}
+SPAN.s2 {
+  width: 180mm;
+  display: inline-block;
+  border-bottom: 1pt solid #000000;
+  text-align: center;
+}
+SPAN.s3 {
+  width: 38mm;
+  display: inline-block;
+  text-align: center;
+}
+SPAN.s4 {
+  width: 14mm;
+  display: inline-block;
+  border-bottom: 1pt solid #000000;
+  text-align: center;
+}
+SPAN.s5 {
+  width: 27.5mm;
+  display: inline-block;
+  text-align: right;
+}
+
+SPAN.s6 {
+  width: 30mm;
+  display: inline-block;
+  text-align: left;
+}
+SPAN.s7 {
+  width: 12mm;
+  display: inline-block;
+  border-bottom: 1pt solid #000000;
+  text-align: center;
+}
+SPAN.s8 {
+  width: 3mm;
+  display: inline-block;
+  text-align: center;
+}
+SPAN.s9 {
+  width: 185mm;
+  display: inline-block;
+  border-bottom: 1pt solid #000000;
+  text-align: center;
+}
+
+/* Таблица "У вынику падліку галасоў" */
+
+P {
+  text-indent: 7mm;
+  margin-top: 2mm;
+}
+P.remark{
+  font-size: 8pt;
+}
+
+
+TABLE.vynik TD.column1{
+  vertical-align: bottom;
+  text-align: left;
+  width: 160mm;
+  padding-top: 1mm;
+}
+
+TABLE.vynik TD.column2{
+  vertical-align: bottom;
+  text-align: right;
+  width: 25mm;
+}
+
+TABLE.vynik TD.column2p{
+  vertical-align: bottom;
+  text-align: center;
+  width: 25mm;
+  border-bottom: 1pt solid #000000;
+}
+
+.o1 {
+  text-indent: -4.5mm;
+  padding-left: 4.5mm;
+}
+.o2{
+  text-indent: 6mm;
+}
+.o3 {
+  text-indent: -8mm;
+  padding-left: 12mm;
+}
+
+/* Таблица с результатами кандидатов */
+
+#candidate_table {
+  margin-top: 3mm;
+  border-collapse: collapse;
+  border: 1pt solid #000000;
+  width: 185mm;
+}
+
+#candidate_table TH {
+  border: 1pt solid #000000;
+  height: 12.5mm;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: normal;
+  font-size: 10.5pt;  
+}
+
+#candidate_table TD {
+  border: 1pt solid #000000;
+  height: 10mm;
+  text-align: left;
+  vertical-align: middle;
+  padding-left: 6mm;
+  font-style: italic;
+  font-size: 12pt;  
+}
+
+#candidate_table INPUT {
+  border: none;
+}
+
+/* ______________Таблица комиссии______________*/
+
+#commission1, #commission2 {
+  border-collapse: separate;
+  border-spacing: 1mm;
+}
+
+#commission1 TD.cell {
+  width: 50mm;
+  height: 10mm;
+  border-bottom: 1pt solid #000000;
+}
+
+#commission1 TD.propusk {
+  width: 20mm;
+}
+
+/* ______________Члены комиссии______________*/
+P.otstup {
+ margin-top: 7mm;
+ text-align: center;
+}
+
+table#commission2 TD.chisla{
+  vertical-align: bottom;
+}
+
+table#commission2 TD.cell{
+  height: 8mm;
+  width: 40mm;
+  border-bottom: 1pt solid #000000;
+}
+
+table#commission2 TD.propusk{
+  width: 10mm;
+}
+
+P.otstup3{
+ margin-top: 12mm;
+ text-align: left;
+}
+
+p.otstup4{
+  text-indent: 6mm;
+  margin-top: 15mm;
+  font-size: 8pt;
+}

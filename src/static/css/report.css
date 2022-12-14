@@ -1,0 +1,40 @@
+#save {
+    font-size: 14pt;
+    background-color: #BFDFAE;
+    text-align: center;
+    width: 700px;
+    /*  height: 300px;  */
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    border: 1px solid #008000;
+}
+
+#save H1 {
+    font-size: 18pt;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+SPAN#timer {
+ color: #0000FF;
+ font-size: 120%;
+}
+
+
+
+p.perehod{
+  font-weight: bold;
+  text-align: center;
+  font-size: 14pt;
+}
+
+a.linkPR{
+  font-weight:bold;
+  font-size:14pt;
+  color:navy;
+  text-decoration: none; 
+  text-align: center;
+}
+
