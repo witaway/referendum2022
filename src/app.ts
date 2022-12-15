@@ -3,8 +3,6 @@ import init from './loaders';
 import * as process from 'process';
 
 (async () => {
-	// Initializes database stuff
-
 	// Create web server
 	const server = express();
 	const port = +process.env['PORT']!;
