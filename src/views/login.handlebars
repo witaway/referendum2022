@@ -1,0 +1,32 @@
+{{> header title="Вход" css="login"}}
+<FORM id="login" action="/login" method="POST">
+    <IMG src='static/image/pic2.jpg' alt=''>
+    <H1>Автоматизированная информационная система<BR>&laquo;Республиканский референдум&nbsp;&mdash;&nbsp;2022&raquo;</H1>
+    <TABLE>
+        <TR>
+            <TD class="right">Имя пользователя:</TD>
+            <TD class="left"><INPUT class="edit" type="text" id="UserName" name="username" value="{{username}}"></TD>
+        </TR>
+        <TR>
+            <TD class="right">Пароль:</TD>
+            <TD class="left"><INPUT class="edit" type="password" id="Password" name="password" value="{{password}}"></TD>
+        </TR>
+        {{{errorMessage}}}
+        <TR>
+            <TD colspan="2"><HR></TD>
+        </TR>
+        <TR>
+            <TD class="enter" colspan="2"><INPUT class="enter" type="submit" value="Вход в систему"></TD>
+        </TR>
+    </TABLE>
+</FORM>
+<SCRIPT type="text/javascript">
+    {{#if focus}}
+    document.getElementById("{{focus}}").focus();
+    document.getElementById("{{focus}}").select();
+    {{else}}
+    document.getElementById("username").focus();
+    document.getElementById("username").select();
+    {{/if}}
+</SCRIPT>
+{{> footer}}
