@@ -3,7 +3,7 @@ import * as express from 'express';
 
 import path from 'path';
 
-import frontendRouter from '../routes/frontend_routes';
+import router from '../routes/frontend';
 
 const setupRoutes = (server: Express) => {
 	// Mount directory with static data
@@ -11,7 +11,7 @@ const setupRoutes = (server: Express) => {
 	server.use('/static', express.static(staticFolder));
 
 	// Mount frontend router
-	server.use('/', frontendRouter);
+	server.use('/', router);
 };
 
 export default setupRoutes;
