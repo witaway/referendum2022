@@ -1,0 +1,172 @@
+{{> header title="Редактирование протокола" css="protocol" script="protocol" }}
+
+<FORM name="myform" action="/protocol/save" method="post" onSubmit="return Control(this, {{ options.length }})">
+
+<DIV id="header">
+    <DIV class="left">
+        <INPUT type="button" class="btn img_back" value="Вернуться к списку участков" onclick="GoTo('/places?tour_id={{ tour_id }}')">
+    </DIV>
+    <DIV class="center"><DIV>
+        <INPUT type="submit" class="btn img_save" value="ADD CHANGEABLE TEXT OF SAVE BUTTON !!!" id="SaveButton">
+    </DIV></DIV>
+    <DIV class="right" >
+        <INPUT type="button" class="btn img_exit" value="Выход из системы" onclick="GoTo('/logout')">
+    </DIV>
+</DIV>
+
+<DIV class="page">
+
+    <INPUT type="hidden" name="tour_id" value="{{ tour_id }}">
+    <INPUT type="hidden" name="place_id" value="{{ place_id }}">
+
+    <TABLE id="headTable">
+        <TR>
+            <TD class="cell1">
+                РЕСПУБЛИКАНСКИЙ РЕФЕРЕНДУМ<BR>
+                ______________________ 2022&nbsp;г.<BR>
+                <SUP>(дата референдума)</SUP>
+            </TD>
+        </TR>
+        <TR>
+            <TD>Участковая комиссия по референдуму участка для голосования №&nbsp;<SPAN class="s7">{{ place.number }}</SPAN><SPAN class="s8"></SPAN><SPAN class="s9">{{ place.address }}</SPAN></TD>
+        </TR>
+        <TR>
+            <TD class="metka m3">(местонахождения участка для голосования: деревня, посёлок, другой населённый пункт, район, район в городе, город, область)</TD>
+        </TR>
+
+    </TABLE>
+
+    <H1><BIG>ПРОТОКОЛ</BIG><BR>
+        о результатах голосования</H1>
+
+    В результате подсчёта голосов участковая комиссия УСТАНОВИЛА:
+
+    <TABLE class="vynik">
+        <TR>
+            <TD class="column1 o1">1.&nbsp;Общее число участников референдума на участке для голосования,<BR>
+                (определяется по списку граждан, имеющих право участвовать<BR>
+                в референдуме)</TD>
+            <TD class="column2"><INPUT type="text" name="protocol[p_1]" id="pole1" value="{{ protocol.p_1 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>
+        </TR>
+        <TR>
+            <TD class="column1 o1">2.&nbsp;Число участников референдума, получивших бюллетени (определяется<BR>
+                путём подсчёта подписей участников референдума в списке граждан,<BR>
+                имеющих право участвовать в референдуме)</TD>
+            <TD class="column2"><INPUT type="text" name="protocol[p_2]" id="pole2" value="{{ protocol.p_2 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>
+        </TR>
+        <TR>
+            <TD class="column1 o1">3.&nbsp;Число участников референдума, принявших участие в голосовании<BR>
+                (определяется путём подсчёта бюллетеней, находившихся в ящиках<BR>
+                для голосования),</TD>
+            <TD class="column2"><INPUT type="text" name="protocol[p_3]" id="pole3" value="{{ protocol.p_3 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>
+        </TR>
+        <TR>
+            <TD class="column1 o2">в том числе:</TD>
+            <TD></TD>
+        </TR>
+        <TR>
+            <TD class="column1 o3">3.1.&nbsp;число участников референдума, принявших участие в досрочном<BR>голосовании</TD>
+            <TD class="column2"><INPUT type="text" name="protocol[p_3_1]" id="pole3_1" value="{{ protocol.p_3_1 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>
+        </TR>
+        <TR>
+            <TD class="column1 o3">3.2.&nbsp;число участников референдума, принявших участие в голосовании<BR>по месту нахождения</TD>
+            <TD class="column2"><INPUT type="text" name="protocol[p_3_2]" id="pole3_2" value="{{ protocol.p_3_2 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>
+        </TR>
+        <TR>
+            <TD class="column1 o3">3.3.&nbsp;число участников референдума, принявших участие в голосовании<BR>в день референдума в помещении участка для голосования</TD>
+            <TD class="column2"><INPUT type="text" name="protocol[p_3_3]" id="pole3_3" value="{{ protocol.p_3_3 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>
+        </TR>
+        <TR>
+            <TD class="column1 o1">4.&nbsp;Результаты голосования по вынесенному на референдум вопросу</TD>
+            <TD class="column2"></TD>
+        </TR>
+    </TABLE>
+
+    <TABLE id="candidate_table">
+
+        <TR>
+            <TH>Вынесенный на референдум вопрос</TH>
+
+            {{#each options}}
+                <TH>4.{{plusOne @index}}.&nbsp;число голосовавших {{ this.name }} вынесенного на референдум вопроса</TH>
+            {{/each}}
+            <TH>4.{{plusOne options.length}}.&nbsp;число бюллетеней, признанных недействительными</TH>
+        </TR>
+
+        <TR>
+            <TH>Принимаете ли Вы изменения и дополнения Конституции Республики Беларусь?</TH>
+            {{#each options}}
+                <TD>
+                    <INPUT type="hidden" name="options[{{ @index }}][id]" value="{{ this.id }}">
+                    <INPUT type="text" name="options[{{ @index }}][votes][count]" id="CRE$i" value="{{ this.votes.count }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)">
+                </TD>
+            {{/each}}
+            <TD><INPUT type="text" name="protocol[p_8]" id="pole8" value="{{ protocol.p_8 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>
+        </TR>
+    </TABLE>
+</DIV>
+
+<DIV class="page">
+
+    <TABLE class="vynik">
+        <TR>
+            <TD class="column1 o1">5.&nbsp;Число бюллетеней, полученных участковой комиссией по<BR>референдуму</TD>
+            <TD class="column2"><INPUT type="text" name="protocol[p_9]" id="pole9" value="{{ protocol.p_9 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>
+        </TR>
+        <TR>
+            <TD class="column1 o1">6.&nbsp;Число испорченных бюллетеней</TD>
+            <TD class="column2"><INPUT type="text" name="protocol[p_10]" id="pole10" value="{{ protocol.p_10 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>
+        </TR>
+        <TR>
+            <TD class="column1 o1">7.&nbsp;Число неиспользованных (погашенных) бюллетеней</TD>
+            <TD class="column2"><INPUT type="text" name="protocol[p_11]" id="pole11" value="{{ protocol.p_11 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>
+        </TR>
+    </TABLE>
+
+    <TABLE id="commission1">
+        <TR><TD>Председатель комиссии</TD><TD class="propusk"></TD><TD class="cell">&nbsp;</TD><TD class="propusk"></TD><TD class="cell">&nbsp;</TD></TR>
+        <TR><TD></TD><TD></TD><TD class="metka">(подпись)</TD><TD></TD><TD class="metka">(инициалы, фамилия)</TD></TR>
+        <TR><TD>Заместитель председателя<BR>комиссии</TD><TD class="propusk"></TD><TD class="cell">&nbsp;</TD><TD class="propusk"></TD><TD class="cell">&nbsp;</TD></TR>
+        <TR><TD></TD><TD></TD><TD class="metka">(подпись)</TD><TD></TD><TD class="metka">(инициалы, фамилия)</TD></TR>
+        <TR><TD>Секретарь комиссии</TD><TD class="propusk">&nbsp;</TD><TD class="cell">&nbsp;</TD><TD class="propusk"></TD><TD class="cell">&nbsp;</TD></TR>
+        <TR><TD></TD><TD></TD><TD class="metka">(подпись)</TD><TD></TD><TD class="metka">(инициалы, фамилия)</TD></TR>
+    </TABLE>
+
+    <P class="otstup">Члены комиссии:</P>
+    <TABLE id="commission2">
+        <TR><TD class="chisla">1.</TD><TD class="cell">&nbsp;</TD><TD class="cell">&nbsp;</TD><TD class="propusk">&nbsp;</TD>
+            <TD class="chisla">9.</TD><TD class="cell">&nbsp;</TD><TD class="cell">&nbsp;</TD></TR>
+        <TR><TD></TD><TD class="metka">(подпись)</TD><TD class="metka">(инициалы, фамилия)</TD><TD></TD>
+            <TD></TD><TD class="metka">(подпись)</TD><TD class="metka">(инициалы, фамилия)</TD></TR>
+        <TR><TD class="chisla">2.</TD><TD class="cell">&nbsp;</TD><TD class="cell">&nbsp;</TD><TD></TD>
+            <TD class="chisla">10.</TD><TD class="cell">&nbsp;</TD><TD class="cell">&nbsp;</TD></TR>
+        <TR><TD class="chisla">3.</TD><TD class="cell">&nbsp;</TD><TD class="cell">&nbsp;</TD><TD></TD>
+            <TD class="chisla">11.</TD><TD class="cell">&nbsp;</TD><TD class="cell">&nbsp;</TD></TR>
+        <TR><TD class="chisla">4.</TD><TD class="cell">&nbsp;</TD><TD class="cell">&nbsp;</TD><TD></TD>
+            <TD class="chisla">12.</TD><TD class="cell">&nbsp;</TD><TD class="cell">&nbsp;</TD></TR>
+        <TR><TD class="chisla">5.</TD><TD class="cell">&nbsp;</TD><TD class="cell">&nbsp;</TD><TD></TD>
+            <TD class="chisla">13.</TD><TD class="cell">&nbsp;</TD><TD class="cell">&nbsp;</TD></TR>
+        <TR><TD class="chisla">6.</TD><TD class="cell">&nbsp;</TD><TD class="cell">&nbsp;</TD><TD></TD>
+            <TD class="chisla">14.</TD><TD class="cell">&nbsp;</TD><TD class="cell">&nbsp;</TD></TR>
+        <TR><TD class="chisla">7.</TD><TD class="cell">&nbsp;</TD><TD class="cell">&nbsp;</TD><TD></TD>
+            <TD class="chisla">15.</TD><TD class="cell">&nbsp;</TD><TD class="cell">&nbsp;</TD></TR>
+        <TR><TD class="chisla">8.</TD><TD class="cell">&nbsp;</TD><TD class="cell">&nbsp;</TD><TD></TD>
+            <TD class="chisla">16.</TD><TD class="cell">&nbsp;</TD><TD class="cell">&nbsp;</TD></TR>
+    </TABLE>
+
+    <P class="otstup3">Пратакол составлен ____________________________ 2022&nbsp;г.</P>
+
+    <P class="otstup4">_____________________________</P>
+    <P class="remark">Копия протокола участковой комиссии после его подписания вывешивается для всеобщего ознакомления в месте, установленном комиссией</P>
+    <P class="remark">К протоколу, который направляется в соответствующую районную, городскую, районную в городе комиссию по референдуму, прилагаются, если они имеются, особые мнения членов комиссии, заявления других лиц о нарушениях, допущенных при голосовании или подсчёте голосов, и принятые по ним решения комиссии.</P>
+</DIV>
+
+</FORM>
+
+<SCRIPT type="text/javascript">
+    getObj('pole1').focus();
+    getObj('SaveButton').disabled=true;
+    getObj('SaveButton2').disabled=true;
+</SCRIPT>
+
+{{> footer }}
