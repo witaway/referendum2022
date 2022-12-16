@@ -1,0 +1,37 @@
+{{> header title="Список участков" css="uchastki" }}
+
+<DIV id="header">
+  <DIV class="left">
+      <INPUT type="button" class="btn img_back" value="К списку туров" onclick="location.href='/'">
+  </DIV>
+  <DIV class="center">
+      <DIV><INPUT type="button" class="btn img_detail32" value="Сводная таблица" onclick="location.href='/results?tour_id={{ tour_id }}'"></DIV>
+  </DIV>
+  <DIV class="right">
+      <INPUT type="button" class="btn img_exit" value="Выход из системы" onclick="location.href='/logout'">
+  </DIV>
+</DIV>
+
+<DIV id="maintable">
+
+    <DIV class="head">
+        <DIV class="column1">Участок №</DIV>
+        <DIV class="column3">Адрес участка</DIV>
+        <DIV class="column5">Протокол</DIV>
+    </DIV>
+
+    {{#each places }}
+        <A href="/protocol_edit?tour_id={{ tour_id }}&place_id={{ this.place.id }}">
+            <DIV class="column1 font1">{{ this.place.number }}</DIV>
+            <DIV class="column3 font3">{{ this.place.address }}</DIV>
+            {{#if this.processed}}
+                <DIV class="column5 font5 present">заполнен</DIV>
+            {{ else }}
+                <DIV class="column5 font5 absent">не заполнен</DIV>
+            {{/if}}
+        </A>
+    {{/each}}
+
+</DIV>
+
+{{> footer }}
