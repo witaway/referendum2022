@@ -21,7 +21,7 @@
     </DIV>
 
     {{#each places }}
-        <A href="/protocol_edit?tour_id={{ tour_id }}&place_id={{ this.place.id }}">
+        <A href="/protocol/edit?tour_id={{ ../tour_id }}&place_id={{ this.place.id }}">
             <DIV class="column1 font1">{{ this.place.number }}</DIV>
             <DIV class="column3 font3">{{ this.place.address }}</DIV>
             {{#if this.processed}}
