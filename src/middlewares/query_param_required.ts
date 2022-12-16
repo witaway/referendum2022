@@ -1,4 +1,4 @@
-const requiredQueryParams = (requiredQueryParameters: [string]) => {
+const requiredQueryParams = (requiredQueryParameters: string[]) => {
 	return (req: Express.Request, res: Express.Response, next: any) => {
 		for (const param of requiredQueryParameters) {
 			if (!req.query[param]) {
