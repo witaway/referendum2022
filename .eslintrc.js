@@ -15,6 +15,8 @@ module.exports = {
 		jest: true,
 	},
 	rules: {
+		'@typescript-eslint/no-ts-ignore': 'off',
+		'@typescript-eslint/no-empty-interface': 'off',
 		'@typescript-eslint/no-empty-function': 'off',
 		'@typescript-eslint/interface-name-prefix': 'off',
 		'@typescript-eslint/explicit-function-return-type': 'off',
