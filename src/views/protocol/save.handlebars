@@ -1,0 +1,29 @@
+{{>header title="" css="report" }}
+
+<DIV id="save">
+    <H1>Данные успешно занесены в базу данных!<BR><BR>
+        <SMALL>
+            Через <SPAN id='timer'>{{ timer_seconds }}</SPAN> секунд вы будете перенаправлены к таблице участков.
+            <BR><BR>
+            <SMALL>
+                <A id='redirect-link' href='/places?tour_id={{ tour_id }}'>Нажмите сюда, если перенаправление не происходит</A>.
+            </SMALL>
+        </SMALL>
+    </H1>
+</DIV>
+
+<script>
+    function countdownRedirect(seconds) {
+        const timer = setInterval(function () {
+            if (seconds) {
+                document.getElementById('timer').innerText = --seconds;
+            } else {
+                clearInterval(timer);
+                const location = document.getElementById('redirect-link').href;
+                window.location.replace(location);
+            }
+        }, 1000);
+    }
+    countdownRedirect({{ timer_seconds }});
+</script>
+{{>footer }}

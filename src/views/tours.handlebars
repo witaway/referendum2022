@@ -1,4 +1,4 @@
-{{> header title="Результаты по турам" css="result" script="result" reload=30 }}
+{{> header title="Результаты по турам" css="result" script="result" }}
 
 <DIV id="header">
     <DIV class="left"></DIV>
@@ -11,11 +11,11 @@
     <H1>Результаты обработки протоколов по турам<BR>
         <SMALL>(по состоянию на {{ date_formatted }})</SMALL>
     </H1>
-
     {{#each tours}}
         <A href='/{{ ../links_to }}?tour_id={{ this.id }}' class='details button'><H1><BIG>{{ this.number }} тур</BIG><BR>
             Обработано {{ this.protocols.processed }} протоколов из {{ this.protocols.total }}</H1></A>
     {{/each}}
 </DIV>
 
-{{> footer}}
+{{>reload seconds=30 }}
+{{>footer }}
