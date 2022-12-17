@@ -1,9 +1,9 @@
-import BadRequestException from './bad_request_exception';
-import ConflictException from './conflict_exception';
-import ForbiddenException from './forbidden_exception';
-import NotFoundException from './not_found_exception';
-import UnauthorizedException from './unauthorized_exception';
-import UnprocessableEntityException from './unprocessable_entity_exception';
+import BadRequestException from './bad-request-exception';
+import ConflictException from './conflict-exception';
+import ForbiddenException from './forbidden-exception';
+import NotFoundException from './not-found-exception';
+import UnauthorizedException from './unauthorized-exception';
+import UnprocessableEntityException from './unprocessable-entity-exception';
 
 export {
 	BadRequestException,

@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 const router = Router();
 
-import requiredQueryParams from '@middlewares/query_param_required';
+import requiredQueryParams from '@middlewares/query-param-required';
 router.get(
 	'/edit',
 	requiredQueryParams(['tour_id', 'place_id']),

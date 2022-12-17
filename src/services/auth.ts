@@ -4,7 +4,7 @@ import UserRepository from '../repositories/user';
 import {
 	UsernameNotFoundException,
 	PasswordNotMatchException,
-} from '../classes/errors/auth_errors';
+} from '../classes/errors/auth-errors';
 
 import bcrypt from 'bcryptjs';
 

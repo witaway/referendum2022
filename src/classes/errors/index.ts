@@ -12,7 +12,7 @@ import { InternalServerError, NotImplementedException } from './5xx';
 import {
 	PasswordNotMatchException,
 	UsernameNotFoundException,
-} from './auth_errors';
+} from './auth-errors';
 
 export {
 	BadRequestException,

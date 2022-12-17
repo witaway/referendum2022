@@ -7,7 +7,7 @@ import toursRouter from './tours';
 import placesRouter from './places';
 import protocolRouter from './protocol';
 
-import requiredQueryParams from '@middlewares/query_param_required';
+import requiredQueryParams from '@middlewares/query-param-required';
 
 const router = Router();
 

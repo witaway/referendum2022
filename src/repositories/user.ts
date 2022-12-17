@@ -1,5 +1,5 @@
 import knex from '../database';
-import bcrypt from 'bcryptjs';
+import hashPassword from '@helpers/hash-password';
 
 enum Role {
 	EDITOR = 'EDITOR',
@@ -15,13 +15,10 @@ interface UserInfo {
 
 class UserRepository {
 	static async create(personalInfo: UserInfo) {
-		const salt = bcrypt.genSaltSync(3);
-		const password = personalInfo.password;
-
 		return knex('user')
 			.insert({
 				username: personalInfo.username,
-				password: bcrypt.hashSync(password, salt),
+				password: hashPassword(personalInfo.password),
 				role: personalInfo.role,
 				FIO: personalInfo.FIO,
 			})
@@ -40,8 +37,7 @@ class UserRepository {
 		if (personalInfo.role) newData.role = personalInfo.role;
 		if (personalInfo.username) newData.username = personalInfo.username;
 		if (personalInfo.password) {
-			const salt = bcrypt.genSaltSync(3);
-			newData.password = bcrypt.hashSync(personalInfo.password, salt);
+			newData.password = hashPassword(personalInfo.password);
 		}
 
 		return knex('user')

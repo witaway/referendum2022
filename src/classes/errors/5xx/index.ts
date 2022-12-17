@@ -1,4 +1,4 @@
-import InternalServerError from './internal_server_error';
-import NotImplementedException from './not_implemented_exception';
+import InternalServerError from './internal-server-error';
+import NotImplementedException from './not-implemented-exception';
 
 export { InternalServerError, NotImplementedException };

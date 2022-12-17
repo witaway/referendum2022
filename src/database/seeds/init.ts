@@ -1,14 +1,9 @@
 import { Knex } from 'knex';
-import bcrypt from 'bcryptjs';
+import hashPassword from '@helpers/hash-password';
 
 export async function seed(knex: Knex): Promise<void> {
 	const fix_sequence = async (sequence: string, value: number) => {
 		knex.raw('ALTER SEQUENCE ?? RESTART WITH ?', [sequence, value]);
-	};
-
-	const hashPassword = (password: string): string => {
-		const salt = bcrypt.genSaltSync(3);
-		return bcrypt.hashSync(password, salt);
 	};
 
 	// Delete all entries in all databases

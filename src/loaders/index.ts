@@ -1,8 +1,8 @@
-import initDotEnv from './dotenv_loader';
-import initExpressModules from './express_modules_loader';
-import setupRoutes from './routes_loader';
-import initStartServer from './start_server_loader';
-import setupPassportStrategies from './passport_strategies_loader';
+import initDotEnv from './dotenv-loader';
+import initExpressModules from './express-modules-loader';
+import setupRoutes from './routes-loader';
+import initStartServer from './start-server-loader';
+import setupPassportStrategies from './passport-strategies-loader';
 
 import { Express } from 'express';
 import * as http from 'http';

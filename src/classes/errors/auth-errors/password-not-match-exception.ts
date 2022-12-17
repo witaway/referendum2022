@@ -1,4 +1,4 @@
-import UnauthorizedException from '../4xx/unauthorized_exception';
+import UnauthorizedException from '../4xx/unauthorized-exception';
 
 class PasswordNotMatchException extends UnauthorizedException {
 	constructor() {
