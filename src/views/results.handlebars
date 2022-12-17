@@ -1,0 +1,168 @@
+<!--{{>header title="Результаты по участкам" css="result" }}-->
+
+<!--&lt;!&ndash;-----------------------------------------------------------------------------------------------------------------&ndash;&gt;-->
+<!--&lt;!&ndash; PAGE HEADER SECTION &ndash;&gt;-->
+<!--<DIV id="header">-->
+<!--{{#switch user_role }}-->
+<!--    {{#case 'EDITOR'}}-->
+<!--            <DIV class="left">-->
+<!--                <INPUT type="button" class="btn img_back" value="К списку участков" onclick="location.href='/places/?tour_id={{ tour_id }}'">-->
+<!--            </DIV>-->
+<!--            <DIV class="center"><DIV></DIV></DIV>-->
+<!--    {{/case}}-->
+<!--    {{#case 'OBSERVER'}}-->
+<!--        <DIV id="header">-->
+<!--            <DIV class="left">-->
+<!--                <INPUT type="button" class="btn img_back" value="К списку туров" onclick="location.href='/'">-->
+<!--            </DIV>-->
+<!--            <DIV class="center"><DIV>$center</DIV>-->
+<!--                <INPUT type="button" class="btn img_protocol" value="Вывод протокола" onclick="location.href='/protocol/summary?tour_id={{ tour_id }}'">-->
+<!--            </DIV>-->
+<!--        </DIV>-->
+<!--    {{/case}}-->
+<!--{{/switch}}-->
+<!--    <DIV class="right">-->
+<!--        <INPUT type="button" class="btn img_exit" value="Выход из системы" onclick="location.href='/logout'">-->
+<!--    </DIV>-->
+<!--</DIV>-->
+
+<!--<DIV class="center">-->
+
+<!--<H1>-->
+<!--    Результаты голосования по участкам<BR>-->
+<!--    <SMALL>(по состоянию на {{ dateFormatted }} обработано {{ protocolsProcessed }} протоколов из {{ protocolsCount }})</SMALL>-->
+<!--</H1>-->
+
+<!--&lt;!&ndash;-----------------------------------------------------------------------------------------------------------------&ndash;&gt;-->
+<!--&lt;!&ndash; TABLE HEADER SECTION. Upper part  &ndash;&gt;-->
+
+<!--<TABLE class='okrug'>-->
+
+<!--    <TR>-->
+<!--        <TH rowspan='2'>Код</TH>-->
+<!--        <TH rowspan='2'>№<BR>участка</TH>-->
+<!--        <TH rowspan='2'>Кол-во<BR>избира-<BR>телей</TH>-->
+<!--        <TH rowspan='2'>Полу-<BR>чили<BR>бюлле-<BR>тени</TH>-->
+<!--        <TH rowspan='2'>Кол-во<BR>проголо-<BR>совавших</TH>-->
+<!--        <TH rowspan='2'>% проголо-<br>совавших</TH>-->
+<!--        <TH colspan='3'>В том числе:</TH>\n;-->
+<!--        {{#each options}}-->
+<!--            <TH colspan='2'>{{ @this }}</TH>-->
+<!--        {{/each}}-->
+<!--    </TR>-->
+
+<!--&lt;!&ndash;-----------------------------------------------------------------------------------------------------------------&ndash;&gt;-->
+<!--&lt;!&ndash; TABLE HEADER SECTION. Lower part  &ndash;&gt;-->
+
+<!--    <TR>-->
+<!--        <TH>досрочно</TH>-->
+<!--        <TH>по месту пребывания</TH>-->
+<!--        <TH>на участке</TH>-->
+<!--        {{#each summary.options }}-->
+<!--            <TH>Кол-во<br>голосов</TH>-->
+<!--            <TH>% от проголо-<br>совавших</TH>-->
+<!--        {{/each}}-->
+<!--    </TR>-->
+
+<!--&lt;!&ndash;-----------------------------------------------------------------------------------------------------------------&ndash;&gt;-->
+<!--&lt;!&ndash; FIRST ROW. SUMMARY DATA &ndash;&gt;-->
+
+
+<!--    <TR>-->
+<!--        <TH class='itogo' colspan='2'>По району</TH>-->
+<!--        <TH class='itogo'>{{ summary.voters.count }}</TH>-->
+<!--        <TH class='itogo'>{{ summary.voters.gotBulletin }}</TH>-->
+<!--        <TH class='itogo'>{{ summary.voters.votedCount }}</TH>-->
+<!--        <TH class='itogo'>{{ summary.voters.votedPercent }}</TH>-->
+<!--        <TH class='itogo'>{{ summary.votingType.early }}</TH>-->
+<!--        <TH class='itogo'>{{ summary.votingType.atHome }}</TH>-->
+<!--        <TH class='itogo'>{{ summary.votingType.atPlace }}</TH>";-->
+<!--        {{#each summary.options}}-->
+<!--            <TH class='itogo'>{{ count }}</TH>-->
+<!--            <TH class='itogo'>{{ percent }}</TH>-->
+<!--        {{/each}}-->
+<!--    </TR>-->
+
+<!--&lt;!&ndash;-----------------------------------------------------------------------------------------------------------------&ndash;&gt;-->
+<!--&lt;!&ndash; ALL OTHER ROWS. DATA BY PLACES &ndash;&gt;-->
+
+<!--    // {-->
+<!--    //     details:-->
+<!--    //     {-->
+<!--    //         colspan: 123 // 9 + количество_опций * 2,-->
+<!--    //         rows: [-->
+<!--    //             {-->
+<!--    //                 is_protocol_processed: false-->
+<!--    //             },-->
+<!--    //             {-->
+<!--    //                 is_protocol_processed: true,  // $vsego > 0-->
+<!--    //                 place: {-->
+<!--    //                     code: 'Артамонов Е. С.',  // $tur_details[$i][0]-->
+<!--    //                     number: 3                 // $tur_details[$i][1]-->
+<!--    //                 }-->
+<!--    //                 voters: {-->
+<!--    //                     count: 3,           // $vsego-->
+<!--    //                     got_bulletin: 3,    // $p2-->
+<!--    //                     voted_count: 3,     // $golosov-->
+<!--    //                     voted_percent: 100  // $procent1-->
+<!--    //                 }-->
+<!--    //                 voting_type: {-->
+<!--    //                     early: 1,        // $p3_1-->
+<!--    //                     at_home: 2,      // $p3_2-->
+<!--    //                     at_place: 0      // $p3_3-->
+<!--    //                 },-->
+<!--    //                 options: [-->
+<!--    //                     {-->
+<!--    //                         count: 1,        // $result-->
+<!--    //                         percent: 33.33   // $procent-->
+<!--    //                     }-->
+<!--    //                 ]-->
+<!--    //             }-->
+<!--    //         ]-->
+<!--    //     }-->
+<!--    // }-->
+
+<!--    $colspan=9+$Ncand*2;-->
+<!--    for($i=0; $i<$Nplace; $i++) {-->
+<!--    // Информация об участке. Код участка и номер участка-->
+<!--    // Код участка - лажа. Кодов участка никаких нет. Это логины юзеров с ролью Editor-->
+<!--    // Возможное решение - заменить SELECT DBUsers.login на SELECT DBUsers.FIO-->
+<!--    // И выводить вместо кода участка ответственного за участок лицо-->
+<!--    echo "<TR><TD>{$tur_details[$i][0]}</TD><TD>{$tur_details[$i][1]}</TD>";-->
+
+<!--        $vsego = $tur_details[$i][2];   // Количество избирателей. Если равно нулю, значит протокол не обработан-->
+<!--        if ($vsego > 0) {-->
+<!--        $p2       = $tur_details[$i][3]; // Получили бюллетени-->
+<!--        $golosov  = $tur_details[$i][4]; // Количество проголосовавших-->
+<!--        $procent1 = round(100 * $golosov / $vsego, 2);  // % проголосовавших-->
+<!--        $p3_1     = $tur_details[$i][5]; // п. 3.1. досрочно-->
+<!--        $p3_2     = $tur_details[$i][6]; // п. 3.2. по месту пребывания-->
+<!--        $p3_3     = $tur_details[$i][7]; // п. 3.3. на участке-->
+<!--        echo "<TD>$vsego</TD><TD>$p2</TD><TD>$golosov</TD><TD>$procent1</TD>-->
+<!--        <TD>$p3_1</TD><TD>$p3_2</TD><TD>$p3_3</TD>\n";-->
+<!--        // Информация голосов по каждой из опций/кандидатов-->
+<!--        for($j=0;$j<$Ncand;$j++) {-->
+<!--        $cp = $Ncand*$i + $j;                    // сука просто перенеси эту хуету на JS-->
+<!--        $result  = $cand_details[$cp][2];        // Количество голосов-->
+<!--        $procent = round(100*$result/$vsego,2);  // % от проголосовавших-->
+<!--        echo "<TD>$result</TD><TD>$procent</TD>";-->
+<!--        }-->
+<!--        echo "</TR>\n";-->
+<!--    } else {-->
+<!--    echo "<TD colspan='$colspan'>протокол не обработан</TD></TR>\n";-->
+<!--    }-->
+<!--    }-->
+
+<!--    //----->
+<!--    echo "</TABLE>\n";-->
+
+<!--switch($_SESSION['UserRole']) {-->
+<!--case 'Observer':-->
+<!--echo "<A href='total_results.php?TID=$id_tur' class='details img_detail' target='_blank'><H2><BIG>Общая таблица результатов</BIG></H2></A>";-->
+<!--break;-->
+<!--}-->
+
+<!--</DIV>-->
+
+<!--{{>reload seconds=60 }}-->
+<!--{{>footer }}-->
