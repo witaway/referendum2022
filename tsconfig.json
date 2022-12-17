@@ -28,7 +28,8 @@
             "@database/*": ["src/database/*"],
             "@middlewares/*": ["src/middlewares/*"],
             "@repositories/*": ["src/repositories/*"],
-            "@services/*": ["src/services/*"]
+            "@services/*": ["src/services/*"],
+            "@helpers/*": ["src/helpers/*"]
         }
     },
     "exclude": ["node_modules"],
