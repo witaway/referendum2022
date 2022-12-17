@@ -1,8 +1,8 @@
 import { Strategy as JwtStrategy } from 'passport-jwt';
 import * as process from 'process';
 import express from 'express';
-import prisma from '../database';
 import passport from 'passport';
+import UserRepository from '@repositories/user';
 
 const setupPassportStrategies = () => {
 	const extractJwtFromCookiesField = (field: string) => {
@@ -23,17 +23,7 @@ const setupPassportStrategies = () => {
 	passport.use(
 		new JwtStrategy(options, async (payload, done) => {
 			try {
-				const user = await prisma.user.findUnique({
-					select: {
-						id: true,
-						role: true,
-						FIO: true,
-						login: true,
-					},
-					where: {
-						id: payload.id,
-					},
-				});
+				const user = await UserRepository.getByID(payload.id);
 				if (user) {
 					return done(null, user);
 				} else {
@@ -51,18 +41,9 @@ const setupPassportStrategies = () => {
 	});
 
 	passport.deserializeUser(function (user: any, done: any) {
-		prisma.user
-			.findUnique({
-				where: {
-					id: user.id,
-				},
-				select: {
-					id: true,
-				},
-			})
-			.then((user) => {
-				done(null, user!.id);
-			});
+		UserRepository.getByID(user.id).then((result) => {
+			done(null, result.id);
+		});
 	});
 };
 

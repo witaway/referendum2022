@@ -1,6 +1,10 @@
-import prisma from '../database';
-import { Role } from '@prisma/client';
+import knex from '../database';
 import bcrypt from 'bcryptjs';
+
+enum Role {
+	EDITOR = 'EDITOR',
+	OBSERVER = 'OBSERVER',
+}
 
 interface UserInfo {
 	username: string;
@@ -14,33 +18,22 @@ class UserRepository {
 		const salt = bcrypt.genSaltSync(3);
 		const password = personalInfo.password;
 
-		const user = await prisma.user.create({
-			data: {
-				login: personalInfo.username,
+		return knex('user')
+			.insert({
+				username: personalInfo.username,
 				password: bcrypt.hashSync(password, salt),
 				role: personalInfo.role,
 				FIO: personalInfo.FIO,
-			},
-		});
-
-		return user;
+			})
+			.returning(['username', 'role', 'FIO'])
+			.first();
 	}
 
 	static async getList() {
-		const users = prisma.user.findMany({
-			select: {
-				id: true,
-				role: true,
-				FIO: true,
-				login: true,
-			},
-		});
-		return users;
+		return knex('user').select(['id', 'username', 'FIO', 'role']);
 	}
 
-	static async updateByID(userID: number, personalInfo: Partial<UserInfo>) {
-		const user = await prisma.user.findUnique({ where: { id: userID } });
-
+	static async updateByID(id: number, personalInfo: Partial<UserInfo>) {
 		const newData = {} as Partial<UserInfo>;
 
 		if (personalInfo.FIO) newData.FIO = personalInfo.FIO;
@@ -51,54 +44,31 @@ class UserRepository {
 			newData.password = bcrypt.hashSync(personalInfo.password, salt);
 		}
 
-		const newUser = prisma.user.update({
-			where: {
-				id: userID,
-			},
-			data: newData,
-		});
-
-		return newUser;
+		return knex('user')
+			.where({ id })
+			.update(newData)
+			.returning(['id', 'username', 'FIO', 'role'])
+			.first();
 	}
 
-	static async deleteByID(userID: number) {
-		await prisma.user.delete({
-			where: {
-				id: userID,
-			},
-		});
+	static async deleteByID(id: number) {
+		return knex('user')
+			.where({ id })
+			.delete()
+			.returning(['id', 'username', 'FIO', 'role'])
+			.first();
 	}
 
-	static async getByID(userId: number, includePassword = false) {
-		const user = await prisma.user.findUnique({
-			select: {
-				id: true,
-				FIO: true,
-				role: true,
-				login: true,
-				password: includePassword,
-			},
-			where: {
-				id: userId,
-			},
-		});
-		return user;
+	static async getByID(id: number, includePassword = false) {
+		const selectedColumns = ['id', 'username', 'FIO', 'role'];
+		if (includePassword) selectedColumns.push('password');
+		return knex('user').where({ id }).select(selectedColumns).first();
 	}
 
 	static async getByUsername(username: string, includePassword = false) {
-		const user = await prisma.user.findUnique({
-			select: {
-				id: true,
-				FIO: true,
-				role: true,
-				login: true,
-				password: includePassword,
-			},
-			where: {
-				login: username,
-			},
-		});
-		return user;
+		const selectedColumns = ['id', 'username', 'FIO', 'role'];
+		if (includePassword) selectedColumns.push('password');
+		return knex('user').where({ username }).select(selectedColumns).first();
 	}
 }
 

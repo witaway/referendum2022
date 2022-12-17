@@ -3,4 +3,5 @@ const initDotEnv = () => {
 	dotenv.config();
 };
 
+initDotEnv();
 export default initDotEnv;

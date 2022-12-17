@@ -1,7 +1,7 @@
-import { PrismaClient } from '@prisma/client';
+import { knex } from 'knex';
+import options from './knexfile';
 
-const prisma = new PrismaClient();
-
-//Object.freeze(prisma);
-
-export default prisma;
+export default knex({
+	client: options['development'].client,
+	connection: options['development'].connection,
+});
