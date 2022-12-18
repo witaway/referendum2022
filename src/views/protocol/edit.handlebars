@@ -4,10 +4,10 @@
 
 <DIV id="header">
     <DIV class="left">
-        <INPUT type="button" class="btn img_back" value="Вернуться к списку участков" onclick="GoTo('/places?tour_id={{ tour_id }}')">
+        <INPUT type="button" class="btn img_back" value="Вернуться к списку участков" onclick="GoTo('/places?tour_id={{ tourId }}')">
     </DIV>
     <DIV class="center"><DIV>
-        <INPUT type="submit" class="btn img_save" value="ADD CHANGEABLE TEXT OF SAVE BUTTON !!!" id="SaveButton">
+        <INPUT type="submit" class="btn img_save" value="{{ternary processed "Сохранить изменения" "Сохранить протокол"}}" id="SaveButton">
     </DIV></DIV>
     <DIV class="right" >
         <INPUT type="button" class="btn img_exit" value="Выход из системы" onclick="GoTo('/logout')">
@@ -16,8 +16,8 @@
 
 <DIV class="page">
 
-    <INPUT type="hidden" name="tour_id" value="{{ tour_id }}">
-    <INPUT type="hidden" name="place_id" value="{{ place_id }}">
+    <INPUT type="hidden" name="tourId" value="{{ tourId }}">
+    <INPUT type="hidden" name="placeId" value="{{ placeId }}">
 
     <TABLE id="headTable">
         <TR>
@@ -97,8 +97,8 @@
             <TH>Принимаете ли Вы изменения и дополнения Конституции Республики Беларусь?</TH>
             {{#each options}}
                 <TD>
-                    <INPUT type="hidden" name="options[{{ @index }}][id]" value="{{ this.id }}">
-                    <INPUT type="text" name="options[{{ @index }}][votes][count]" id="CRE$i" value="{{ this.votes.count }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)">
+                    <INPUT type="hidden" name="votes[{{ @index }}][optionId]" value="{{ this.id }}">
+                    <INPUT type="text" name="votes[{{ @index }}][count]" id="CRE{{ @index }}" value="{{ this.votes.count }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)">
                 </TD>
             {{/each}}
             <TD><INPUT type="text" name="protocol[p_8]" id="pole8" value="{{ protocol.p_8 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>

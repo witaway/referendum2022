@@ -9,10 +9,10 @@
 <DIV class="center" style="width: 50%">
 
     <H1>Результаты обработки протоколов по турам<BR>
-        <SMALL>(по состоянию на {{ date_formatted }})</SMALL>
+        <SMALL>(по состоянию на {{ dateFormatted }})</SMALL>
     </H1>
     {{#each tours}}
-        <A href='/{{ ../links_to }}?tour_id={{ this.id }}' class='details button'><H1><BIG>{{ this.number }} тур</BIG><BR>
+        <A href='/{{ ../linksTo }}?tour_id={{ this.id }}' class='details button'><H1><BIG>{{ this.number }} тур</BIG><BR>
             Обработано {{ this.protocols.processed }} протоколов из {{ this.protocols.total }}</H1></A>
     {{/each}}
 </DIV>

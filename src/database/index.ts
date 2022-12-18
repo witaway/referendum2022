@@ -7,10 +7,10 @@ const knex = Knex({
 	connection: options['development'].connection,
 });
 
-knex.client.on('query-response', (response: any, obj: any, builder: any) => {
-	obj.response.rows[0].a = 1;
-	//console.log(obj.response);
-	//obj.response.rows = dotNotationParser(obj.response.rows);
+knex.client.on('query-response', (response: any, obj: any) => {
+	for (let i = 0; i < obj.response.rowCount; i++) {
+		obj.response.rows[i] = dotNotationParser(obj.response.rows[i]);
+	}
 });
 
 export default knex;

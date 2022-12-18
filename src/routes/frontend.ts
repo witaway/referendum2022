@@ -1,27 +1,39 @@
 import { Router } from 'express';
-import auth from '@middlewares/auth';
+import loadSession from '@middlewares/load-session';
 
-import loginRouter from './auth/login';
-import logoutRouter from './auth/logout';
+import authRouter from './auth';
 import toursRouter from './tours';
 import placesRouter from './places';
 import protocolRouter from './protocol';
 
-import requiredQueryParams from '@middlewares/query-param-required';
+import authorized from '@middlewares/authorized';
 
 const router = Router();
+router.use(loadSession);
 
-router.use(auth);
+router.use('/', authRouter);
 
-router.use('/login', loginRouter);
-router.use('/logout', logoutRouter);
-router.use('/', toursRouter);
-router.use('/places', requiredQueryParams(['tour_id']), placesRouter);
+router.use(authorized);
+
+router.use('/', (req: Express.Request, res: Express.Response, next) => {
+	if (req.url === '/') {
+		res.redirect('/tours');
+		return;
+	}
+	next();
+});
+
+router.use('/tours', toursRouter);
+router.use('/places', placesRouter);
 router.use('/protocol', protocolRouter);
 
 router.get('*', (req, res) => {
 	res.status(404);
-	res.send('This page does not exist');
+	res.render('error', {
+		title: 'Ошибка 404',
+		message:
+			'Похоже, вы пытаетесь обратиться к странице, которой не существует.',
+	});
 });
 
 export default router;

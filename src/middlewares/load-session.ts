@@ -1,6 +1,10 @@
 import passport from 'passport';
 
-const auth = (req: Express.Request, res: Express.Response, next: any) => {
+const loadSession = (
+	req: Express.Request,
+	res: Express.Response,
+	next: any,
+) => {
 	passport.authenticate(
 		'jwt',
 		{
@@ -17,4 +21,4 @@ const auth = (req: Express.Request, res: Express.Response, next: any) => {
 	)(req, res, next);
 };
 
-export default auth;
+export default loadSession;

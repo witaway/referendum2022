@@ -21,9 +21,9 @@
     </DIV>
 
     {{#each places }}
-        <A href="/protocol/edit?tour_id={{ ../tour_id }}&place_id={{ this.place.id }}">
-            <DIV class="column1 font1">{{ this.place.number }}</DIV>
-            <DIV class="column3 font3">{{ this.place.address }}</DIV>
+        <A href="/protocol/edit?tour_id={{ ../tour_id }}&place_id={{ this.id }}">
+            <DIV class="column1 font1">{{ this.number }}</DIV>
+            <DIV class="column3 font3">{{ this.address }}</DIV>
             {{#if this.processed}}
                 <DIV class="column5 font5 present">заполнен</DIV>
             {{ else }}
