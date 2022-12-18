@@ -29,7 +29,8 @@
             "@middlewares/*": ["src/middlewares/*"],
             "@repositories/*": ["src/repositories/*"],
             "@services/*": ["src/services/*"],
-            "@helpers/*": ["src/helpers/*"]
+            "@helpers/*": ["src/helpers/*"],
+            "@routes/*": ["src/routes"]
         }
     },
     "exclude": ["node_modules"],
