@@ -1,5 +1,4 @@
 import 'express';
-import { User as UserModel } from '@prisma/client';
 import { ParsedQs } from 'qs';
 import http from 'http';
 import {
@@ -15,6 +14,18 @@ import {
 	Ranges as RangeParserRanges,
 	Result as RangeParserResult,
 } from 'range-parser';
+
+export enum Role {
+	EDITOR = 'EDITOR',
+	OBSERVER = 'OBSERVER',
+}
+
+interface UserModel {
+	id: number;
+	username: number;
+	role: Role;
+	FIO: string;
+}
 
 declare global {
 	namespace Express {
