@@ -4,11 +4,12 @@ import * as express from 'express';
 import path from 'path';
 
 import loadSession from '@middlewares/load-session';
-import authRouter from '../routes/auth';
+import authRouter from '@routes/auth';
 import requireAuthorizationOrRedirectTo from '@middlewares/require-authorization-or-redirect-to';
-import toursRouter from '../routes/tours';
-import placesRouter from '../routes/places';
-import protocolRouter from '../routes/protocol';
+import toursRouter from '@routes/tours';
+import placesRouter from '@routes/places';
+import protocolRouter from '@routes/protocol';
+import resultsRouter from '@routes/results';
 import redirectRootToDefaultUrl from '@middlewares/redirect-root-to-default-url';
 
 const setupRoutes = (server: Express) => {
@@ -29,6 +30,7 @@ const setupRoutes = (server: Express) => {
 	server.use('/tours', toursRouter);
 	server.use('/places', placesRouter);
 	server.use('/protocol', protocolRouter);
+	server.use('/results', resultsRouter);
 
 	// Page 404
 	server.get('*', (req, res) => {
