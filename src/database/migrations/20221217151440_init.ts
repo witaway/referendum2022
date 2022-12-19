@@ -61,7 +61,7 @@ export async function up(knex: Knex): Promise<void> {
 			table.integer('option_id').references('id').inTable('option');
 			table.integer('count');
 
-			table.primary(['place_id', 'tour_id']);
+			table.primary(['place_id', 'tour_id', 'option_id']);
 		});
 }
 
