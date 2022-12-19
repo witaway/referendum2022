@@ -10,7 +10,30 @@ class ProtocolController {
 
 		const place = await PlaceRepository.getById(placeId);
 
-		console.log(place);
+		const protocol = await ProtocolRepository.get(tourId, placeId);
+
+		const options = await VotesRepository.get(tourId, placeId);
+
+		const processed = protocol !== undefined;
+
+		res.render('protocol/view', {
+			editable: true,
+			goBackButtonText: 'Вернуться к списку участков',
+			goBackButtonLink: `/places?tour_id=${tourId}`,
+			tourId,
+			placeId,
+			processed,
+			place,
+			protocol,
+			options,
+		});
+	}
+
+	static async view(req: Express.Request, res: Express.Response) {
+		const tourId = Number(req.query.tour_id);
+		const placeId = Number(req.query.place_id);
+
+		const place = await PlaceRepository.getById(placeId);
 
 		const protocol = await ProtocolRepository.get(tourId, placeId);
 
@@ -18,7 +41,10 @@ class ProtocolController {
 
 		const processed = protocol !== undefined;
 
-		res.render('protocol/edit', {
+		res.render('protocol/view', {
+			editable: false,
+			goBackButtonText: 'Вернуться к сводной таблице',
+			goBackButtonLink: `/results?tour_id=${tourId}`,
 			tourId,
 			placeId,
 			processed,
@@ -62,8 +88,6 @@ class ProtocolController {
 			tour_id: req.body.tourId,
 		});
 	}
-
-	static async view(req: Express.Request, res: Express.Response) {}
 }
 
 export default ProtocolController;

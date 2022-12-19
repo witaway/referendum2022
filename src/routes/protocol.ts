@@ -11,8 +11,12 @@ router.get(
 	ProtocolController.edit,
 );
 
-router.post('/save', ProtocolController.save);
+router.get(
+	'/view',
+	requiredQueryParams(['tour_id', 'place_id']),
+	ProtocolController.view,
+);
 
-router.get('/view', ProtocolController.view);
+router.post('/save', ProtocolController.save);
 
 export default router;
