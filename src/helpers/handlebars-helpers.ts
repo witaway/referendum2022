@@ -2,6 +2,9 @@ const handlebarsHelpers: any = {
 	ternary: function (cond: any, v1: any, v2: any) {
 		return cond ? v1 : v2;
 	},
+	ifnot: function (cond: any, v1: any) {
+		if (!cond) return v1;
+	},
 	plusOne: function (value: any) {
 		return value + 1;
 	},
