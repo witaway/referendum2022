@@ -30,7 +30,7 @@
             "@repositories/*": ["src/repositories/*"],
             "@services/*": ["src/services/*"],
             "@helpers/*": ["src/helpers/*"],
-            "@routes/*": ["src/routes"]
+            "@routes/*": ["src/routes/*"]
         }
     },
     "exclude": ["node_modules"],
