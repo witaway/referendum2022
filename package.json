@@ -4,9 +4,7 @@
     "description": "Referendum 2022 project.",
     "main": "src/app.js",
     "scripts": {
-        "start": "node ./dist/app.js",
         "dev": "ts-node-dev -r tsconfig-paths/register src/app.ts",
-        "build": "tsc && tsc-alias",
         "migrate": "npx knex migrate:latest --knexfile src/database/knexfile.ts",
         "seed": "npx knex seed:run --knexfile src/database/knexfile.ts"
     },

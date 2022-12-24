@@ -1,5 +1,10 @@
 import { Knex } from 'knex';
-import hashPassword from '@helpers/hash-password';
+import bcrypt from 'bcryptjs';
+
+function hashPassword(password: string): string {
+	const salt = bcrypt.genSaltSync(3);
+	return bcrypt.hashSync(password, salt);
+}
 
 export async function seed(knex: Knex): Promise<void> {
 	const fix_sequence = async (sequence: string, value: number) => {
