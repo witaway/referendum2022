@@ -6,19 +6,15 @@
     }
 </style>
 
-<FORM name="myform" action="{{ternary editable "/protocol/save" "javascript:void(0)"}}" method="post" onSubmit="return Control(this, {{ options.length }})">
+<FORM name="myform" action="javascript:void(0)" method="post" onSubmit="javascript:void(0)">
 
 <DIV id="header">
     <DIV class="left">
         <INPUT type="button" class="btn img_back" value="{{ goBackButtonText }}" onclick="GoTo('{{ goBackButtonLink }}')">
     </DIV>
-    <DIV class="center"><DIV>
-        {{#if editable}}
-            <INPUT type="submit" class="btn img_save" value="{{ternary processed "Сохранить изменения" "Сохранить протокол"}}" id="SaveButton">
-        {{else}}
-            <INPUT type="button" class="btn title" style="font-weight:bold;" value="ПРОСМОТР ПРОТОКОЛА">
-        {{/if}}
-    </DIV></DIV>
+    <DIV class="center">
+          <INPUT type="button" class="btn title" style="font-weight:bold;" value="ПРОСМОТР ИТОГОВ">
+    </DIV>
     <DIV class="right" >
         <INPUT type="button" class="btn img_exit" value="Выход из системы" onclick="GoTo('/logout')">
     </DIV>
@@ -26,49 +22,49 @@
 
 <DIV class="page">
 
-    <INPUT type="hidden" name="tourId" value="{{ tourId }}">
-    <INPUT type="hidden" name="placeId" value="{{ placeId }}">
-
     <TABLE id="headTable">
         <TR>
             <TD class="cell1">
                 РЕСПУБЛИКАНСКИЙ РЕФЕРЕНДУМ<BR>
                 ______________________ 2022&nbsp;г.<BR>
-                <SUP>(дата референдума)</SUP>
+                <SUP>(дата выборов)</SUP>
             </TD>
         </TR>
         <TR>
-            <TD>Участковая комиссия по референдуму участка для голосования №&nbsp;<SPAN class="s7">{{ place.number }}</SPAN><SPAN class="s8"></SPAN><SPAN class="s9">{{ place.address }}</SPAN></TD>
+            <TD><SPAN class="u w185mm">Первомайская районная г.&nbsp;Витебска</SPAN></TD>
         </TR>
         <TR>
-            <TD class="metka m3">(местонахождения участка для голосования: деревня, посёлок, другой населённый пункт, район, район в городе, город, область)</TD>
+            <TD class="metka">(название районной, городской, районной в городе комиссии по республиканскому референдуму)</TD>
         </TR>
-
+        <TR>
+            <TD>комиссия по референдуму</TD>
+        </TR>
     </TABLE>
 
-    <H1><BIG>ПРОТОКОЛ</BIG><BR>
-        о результатах голосования</H1>
-
-    В результате подсчёта голосов участковая комиссия УСТАНОВИЛА:
+    <H1>
+        <BIG>ПРОТОКОЛ</BIG><BR>
+        о результатах голосования<BR>
+        на республиканском реферундуме
+    </H1>
 
     <TABLE class="vynik">
         <TR>
             <TD class="column1 o1">1.&nbsp;Общее число участников референдума на участке для голосования,<BR>
                 (определяется по списку граждан, имеющих право участвовать<BR>
                 в референдуме)</TD>
-            <TD class="column2"><INPUT type="text" name="protocol[p_1]" id="pole1" {{ifnot editable "readonly"}} value="{{ protocol.p_1 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>
+            <TD class="column2"><INPUT type="text" name="protocol[p_1]" id="pole1" readonly value="{{ protocol.p_1 }}"></TD>
         </TR>
         <TR>
             <TD class="column1 o1">2.&nbsp;Число участников референдума, получивших бюллетени (определяется<BR>
                 путём подсчёта подписей участников референдума в списке граждан,<BR>
                 имеющих право участвовать в референдуме)</TD>
-            <TD class="column2"><INPUT type="text" name="protocol[p_2]" id="pole2" {{ifnot editable "readonly"}} value="{{ protocol.p_2 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>
+            <TD class="column2"><INPUT type="text" name="protocol[p_2]" id="pole2" readonly value="{{ protocol.p_2 }}"></TD>
         </TR>
         <TR>
             <TD class="column1 o1">3.&nbsp;Число участников референдума, принявших участие в голосовании<BR>
                 (определяется путём подсчёта бюллетеней, находившихся в ящиках<BR>
                 для голосования),</TD>
-            <TD class="column2"><INPUT type="text" name="protocol[p_3]" id="pole3" {{ifnot editable "readonly"}} value="{{ protocol.p_3 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>
+            <TD class="column2"><INPUT type="text" name="protocol[p_3]" id="pole3" readonly value="{{ protocol.p_3 }}"></TD>
         </TR>
         <TR>
             <TD class="column1 o2">в том числе:</TD>
@@ -76,15 +72,15 @@
         </TR>
         <TR>
             <TD class="column1 o3">3.1.&nbsp;число участников референдума, принявших участие в досрочном<BR>голосовании</TD>
-            <TD class="column2"><INPUT type="text" name="protocol[p_3_1]" id="pole3_1" {{ifnot editable "readonly"}} value="{{ protocol.p_3_1 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>
+            <TD class="column2"><INPUT type="text" name="protocol[p_3_1]" id="pole3_1" readonly value="{{ protocol.p_3_1 }}"></TD>
         </TR>
         <TR>
             <TD class="column1 o3">3.2.&nbsp;число участников референдума, принявших участие в голосовании<BR>по месту нахождения</TD>
-            <TD class="column2"><INPUT type="text" name="protocol[p_3_2]" id="pole3_2" {{ifnot editable "readonly"}} value="{{ protocol.p_3_2 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>
+            <TD class="column2"><INPUT type="text" name="protocol[p_3_2]" id="pole3_2" readonly value="{{ protocol.p_3_2 }}"></TD>
         </TR>
         <TR>
             <TD class="column1 o3">3.3.&nbsp;число участников референдума, принявших участие в голосовании<BR>в день референдума в помещении участка для голосования</TD>
-            <TD class="column2"><INPUT type="text" name="protocol[p_3_3]" id="pole3_3" {{ifnot editable "readonly"}} value="{{ protocol.p_3_3 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>
+            <TD class="column2"><INPUT type="text" name="protocol[p_3_3]" id="pole3_3" readonly value="{{ protocol.p_3_3 }}"></TD>
         </TR>
         <TR>
             <TD class="column1 o1">4.&nbsp;Результаты голосования по вынесенному на референдум вопросу</TD>
@@ -108,10 +104,10 @@
             {{#each options}}
                 <TD>
                     <INPUT type="hidden" name="votes[{{ @index }}][optionId]" value="{{ this.id }}">
-                    <INPUT type="text" name="votes[{{ @index }}][count]" id="CRE{{ @index }}" {{ifnot @root.editable "readonly"}} value="{{ this.votes.count }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)">
+                    <INPUT type="text" name="votes[{{ @index }}][count]" id="CRE{{ @index }}" readonly value="{{ this.count }}">
                 </TD>
             {{/each}}
-            <TD><INPUT type="text" name="protocol[p_8]" id="pole8" {{ifnot editable "readonly"}} value="{{ protocol.p_8 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>
+            <TD><INPUT type="text" name="protocol[p_8]" id="pole8" readonly value="{{ protocol.p_8 }}"></TD>
         </TR>
     </TABLE>
 </DIV>
@@ -121,15 +117,15 @@
     <TABLE class="vynik">
         <TR>
             <TD class="column1 o1">5.&nbsp;Число бюллетеней, полученных участковой комиссией по<BR>референдуму</TD>
-            <TD class="column2"><INPUT type="text" name="protocol[p_9]" id="pole9" {{ifnot editable "readonly"}} value="{{ protocol.p_9 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>
+            <TD class="column2"><INPUT type="text" name="protocol[p_9]" id="pole9" readonly value="{{ protocol.p_9 }}"></TD>
         </TR>
         <TR>
             <TD class="column1 o1">6.&nbsp;Число испорченных бюллетеней</TD>
-            <TD class="column2"><INPUT type="text" name="protocol[p_10]" id="pole10" {{ifnot editable "readonly"}} value="{{ protocol.p_10 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>
+            <TD class="column2"><INPUT type="text" name="protocol[p_10]" id="pole10" readonly value="{{ protocol.p_10 }}"></TD>
         </TR>
         <TR>
             <TD class="column1 o1">7.&nbsp;Число неиспользованных (погашенных) бюллетеней</TD>
-            <TD class="column2"><INPUT type="text" name="protocol[p_11]" id="pole11" {{ifnot editable "readonly"}} value="{{ protocol.p_11 }}" class="{{ternary processed "emptyColor" "okColor" }}" OnChange="OnChangeText(this)"></TD>
+            <TD class="column2"><INPUT type="text" name="protocol[p_11]" id="pole11" readonly value="{{ protocol.p_11 }}"></TD>
         </TR>
     </TABLE>
 
@@ -172,6 +168,12 @@
 </DIV>
 
 </FORM>
+
+{{#unless processed}}
+<SCRIPT>
+    alert("Внимание!\n\nВведены не все протоколы участковых комиссий. \nПротокол районной комиссии будет содержать недостоверные данные");
+</SCRIPT>
+{{/unless}}
 
 <SCRIPT type="text/javascript">
     getObj('pole1').focus();

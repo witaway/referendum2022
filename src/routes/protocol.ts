@@ -14,6 +14,12 @@ router.get(
 );
 
 router.get(
+	'/summary',
+	requiredQueryParams(['tour_id']),
+	ProtocolController.summary,
+);
+
+router.get(
 	'/view',
 	requiredQueryParams(['tour_id', 'place_id']),
 	ProtocolController.view,

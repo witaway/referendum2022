@@ -15,19 +15,18 @@
             <DIV class="left">
                 <INPUT type="button" class="btn img_back" value="К списку участков" onclick="location.href='/places/?tour_id={{ tourId }}'">
             </DIV>
-            <DIV class="center"><DIV></DIV></DIV>
     {{/case}}
     {{#case 'OBSERVER'}}
         <DIV id="header">
             <DIV class="left">
                 <INPUT type="button" class="btn img_back" value="К списку туров" onclick="location.href='/'">
             </DIV>
-            <DIV class="center">
-                <INPUT type="button" class="btn img_protocol" value="Вывод протокола TODO" onclick="location.href='/protocol/summary?tour_id={{ tourId }}'">
-            </DIV>
         </DIV>
     {{/case}}
 {{/switch}}
+    <DIV class="center">
+        <INPUT type="button" class="btn img_protocol" value="Вывод протокола" onclick="location.href='/protocol/summary?tour_id={{ tourId }}'">
+    </DIV>
     <DIV class="right">
         <INPUT type="button" class="btn img_exit" value="Выход из системы" onclick="location.href='/logout'">
     </DIV>

@@ -54,6 +54,32 @@ class ProtocolController {
 		});
 	}
 
+	static async summary(req: Express.Request, res: Express.Response) {
+		const tourId = Number(req.query.tour_id);
+		const role = req.user!.role;
+
+		let protocol, options;
+		if (role === 'EDITOR') {
+			const editorId = Number(req.user!.id);
+			protocol = await ProtocolRepository.getSummary(tourId, editorId);
+			options = await VotesRepository.getSummary(tourId, editorId);
+		} else {
+			protocol = await ProtocolRepository.getSummary(tourId);
+			options = await VotesRepository.getSummary(tourId);
+		}
+
+		const processed = protocol.protocolsCount == protocol.protocolsProcessed;
+
+		res.render('protocol/summary', {
+			goBackButtonText: 'Вернуться к сводной таблице',
+			goBackButtonLink: `/results?tour_id=${tourId}`,
+			tourId,
+			processed,
+			protocol: protocol.rawProtocolData,
+			options,
+		});
+	}
+
 	static async save(req: Express.Request, res: Express.Response) {
 		// Recieves something like this in req.body
 		//
