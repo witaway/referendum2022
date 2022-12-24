@@ -4,10 +4,12 @@ const router = Router();
 
 import requiredQueryParams from '@middlewares/query-param-required';
 import ProtocolController from '../controllers/protocol';
+import acceptedRoles from '@middlewares/accepted-roles';
 
 router.get(
 	'/edit',
 	requiredQueryParams(['tour_id', 'place_id']),
+	acceptedRoles(['EDITOR']),
 	ProtocolController.edit,
 );
 
@@ -17,6 +19,6 @@ router.get(
 	ProtocolController.view,
 );
 
-router.post('/save', ProtocolController.save);
+router.post('/save', acceptedRoles(['EDITOR']), ProtocolController.save);
 
 export default router;
